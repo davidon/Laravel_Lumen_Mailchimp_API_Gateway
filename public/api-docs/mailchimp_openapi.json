@@ -1,0 +1,589 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "MailchimpAPIGateway",
+    "description" : "Mailchimp API Gateway",
+    "contact" : { },
+    "version" : "1.0"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8000/mailchimp"
+  } ],
+  "paths" : {
+    "/lists" : {
+      "get" : {
+        "tags" : [ "Lists" ],
+        "summary" : "Show lists",
+        "description" : "Return all lists",
+        "operationId" : "ShowLists",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Lists" ],
+        "summary" : "Create list",
+        "description" : "Return a new list",
+        "operationId" : "CreateList",
+        "parameters" : [ {
+          "name" : "Content-Type",
+          "in" : "header",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreatealistRequest"
+              },
+              "example" : "{\"name\":\"New list 201901170915pm\",\"permission_reminder\":\"You signed up for updates on Greeks economy.\",\"email_type_option\":false,\"contact\":{\"company\":\"Doe Ltd.\",\"address1\":\"DoeStreet 1\",\"address2\":\"\",\"city\":\"Doesy\",\"state\":\"Doedoe\",\"zip\":\"1672-12\",\"country\":\"US\",\"phone\":\"55533344412\"},\"campaign_defaults\":{\"from_name\":\"John Doe\",\"from_email\":\"john@doe.com\",\"subject\":\"My new campaign!\",\"language\":\"US\"},\"visibility\":\"prv\",\"use_archive_bar\":false,\"notify_on_subscribe\":\"notify@loyaltycorp.com.au\",\"notify_on_unsubscribe\":\"notify@loyaltycorp.com.au\"}"
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/lists/{listId}" : {
+      "get" : {
+        "tags" : [ "Lists" ],
+        "summary" : "Show list",
+        "description" : "Return a specific list by ID",
+        "operationId" : "ShowList",
+        "parameters" : [ {
+          "name" : "listId",
+          "in" : "path",
+          "description" : "ID of the list to get",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Lists" ],
+        "summary" : "Update list",
+        "description" : "Return the specific updated list",
+        "operationId" : "UpdateList",
+        "parameters" : [ {
+          "name" : "Content-Type",
+          "in" : "header",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        }, {
+          "name" : "listId",
+          "in" : "path",
+          "description" : "ID of the list to update",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdatealistRequest"
+              },
+              "example" : "{\"name\":\"NewX listX\",\"permission_reminder\":\"YouX signed up for updates on Greeks economy.\",\"email_type_option\":false,\"contact\":{\"company\":\"DoeX LtdX.\",\"address1\":\"DoeStreet 1\",\"address2\":\"\",\"city\":\"Doesy\",\"state\":\"Doedoe\",\"zip\":\"1672-12\",\"country\":\"US\",\"phone\":\"55533344412\"},\"campaign_defaults\":{\"from_name\":\"JohnXX Doe\",\"from_email\":\"john@doe.com\",\"subject\":\"My new campaign!\",\"language\":\"US\"},\"visibility\":\"prv\",\"use_archive_bar\":false,\"notify_on_subscribe\":\"notify@loyaltycorp.com.au\",\"notify_on_unsubscribe\":\"notify@loyaltycorp.com.au\"}"
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Lists" ],
+        "summary" : "Delete list",
+        "description" : "Return nothing",
+        "operationId" : "DeleteList",
+        "parameters" : [ {
+          "name" : "listId",
+          "in" : "path",
+          "description" : "ID of the list to delete",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : { }
+        }
+      }
+    },
+    "/lists/{listId}/members" : {
+      "get" : {
+        "tags" : [ "Members" ],
+        "summary" : "Show members",
+        "description" : "Return all members of a list",
+        "operationId" : "ShowMembers",
+        "parameters" : [ {
+          "name" : "listId",
+          "in" : "path",
+          "description" : "list ID under which member is to be created",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Members" ],
+        "summary" : "Create member",
+        "description" : "Return a member",
+        "operationId" : "CreateMember",
+        "parameters" : [ {
+          "name" : "listId",
+          "in" : "path",
+          "description" : "list ID under which member is to be created",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/body"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/lists/{listId}/members/{memberId}" : {
+      "get" : {
+        "tags" : [ "Members" ],
+        "summary" : "Show member",
+        "description" : "Return a specific member by ID",
+        "operationId" : "ShowMember",
+        "parameters" : [ {
+          "name" : "listId",
+          "in" : "path",
+          "description" : "list ID under which member is to get",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "memberId",
+          "in" : "path",
+          "description" : "ID of the member to get",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Members" ],
+        "summary" : "Update member",
+        "description" : "Return the specific updated member",
+        "operationId" : "UpdateMember",
+        "parameters" : [ {
+          "name" : "Content-Type",
+          "in" : "header",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "application/json"
+          }
+        }, {
+          "name" : "listId",
+          "in" : "path",
+          "description" : "list ID under which member is to be updated",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "memberId",
+          "in" : "path",
+          "description" : "ID of the member to be updated",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdatememberRequest"
+              },
+              "example" : "{\"email_address\":\"RoyaltyXCoLtdX@hotmail.com\",\"status\":\"subscribed\",\"language\":\"USX EnglishX\",\"vip\":true,\"location\":{\"latitude\":\"-37.898725\",\"longitude\":\"145.049333\"},\"ip_signup\":\"172.198.34.87\",\"tags\":[\"Soccer\",\"Fashion\"]}"
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Members" ],
+        "summary" : "Delete member",
+        "description" : "Delete a member by ID. Return nothing",
+        "operationId" : "DeleteMember",
+        "parameters" : [ {
+          "name" : "listId",
+          "in" : "path",
+          "description" : "list ID under which member is to be deleted",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "memberId",
+          "in" : "path",
+          "description" : "ID of the member to be deleted",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "CreatealistRequest" : {
+        "title" : "CreatealistRequest",
+        "required" : [ "campaign_defaults", "contact", "email_type_option", "name", "notify_on_subscribe", "notify_on_unsubscribe", "permission_reminder", "use_archive_bar", "visibility" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "permission_reminder" : {
+            "type" : "string"
+          },
+          "email_type_option" : {
+            "type" : "boolean"
+          },
+          "contact" : {
+            "$ref" : "#/components/schemas/Contact"
+          },
+          "campaign_defaults" : {
+            "$ref" : "#/components/schemas/CampaignDefaults"
+          },
+          "visibility" : {
+            "type" : "string"
+          },
+          "use_archive_bar" : {
+            "type" : "boolean"
+          },
+          "notify_on_subscribe" : {
+            "type" : "string"
+          },
+          "notify_on_unsubscribe" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "name" : "New list 201901170915pm",
+          "permission_reminder" : "You signed up for updates on Greeks economy.",
+          "email_type_option" : false,
+          "contact" : {
+            "company" : "Doe Ltd.",
+            "address1" : "DoeStreet 1",
+            "address2" : "",
+            "city" : "Doesy",
+            "state" : "Doedoe",
+            "zip" : "1672-12",
+            "country" : "US",
+            "phone" : "55533344412"
+          },
+          "campaign_defaults" : {
+            "from_name" : "John Doe",
+            "from_email" : "john@doe.com",
+            "subject" : "My new campaign!",
+            "language" : "US"
+          },
+          "visibility" : "prv",
+          "use_archive_bar" : false,
+          "notify_on_subscribe" : "notify@loyaltycorp.com.au",
+          "notify_on_unsubscribe" : "notify@loyaltycorp.com.au"
+        }
+      },
+      "Contact" : {
+        "title" : "Contact",
+        "required" : [ "address1", "address2", "city", "company", "country", "phone", "state", "zip" ],
+        "type" : "object",
+        "properties" : {
+          "company" : {
+            "type" : "string"
+          },
+          "address1" : {
+            "type" : "string"
+          },
+          "address2" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "state" : {
+            "type" : "string"
+          },
+          "zip" : {
+            "type" : "string"
+          },
+          "country" : {
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CampaignDefaults" : {
+        "title" : "CampaignDefaults",
+        "required" : [ "from_email", "from_name", "language", "subject" ],
+        "type" : "object",
+        "properties" : {
+          "from_name" : {
+            "type" : "string"
+          },
+          "from_email" : {
+            "type" : "string"
+          },
+          "subject" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "UpdatealistRequest" : {
+        "title" : "UpdatealistRequest",
+        "required" : [ "campaign_defaults", "contact", "email_type_option", "name", "notify_on_subscribe", "notify_on_unsubscribe", "permission_reminder", "use_archive_bar", "visibility" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "permission_reminder" : {
+            "type" : "string"
+          },
+          "email_type_option" : {
+            "type" : "boolean"
+          },
+          "contact" : {
+            "$ref" : "#/components/schemas/Contact"
+          },
+          "campaign_defaults" : {
+            "$ref" : "#/components/schemas/CampaignDefaults"
+          },
+          "visibility" : {
+            "type" : "string"
+          },
+          "use_archive_bar" : {
+            "type" : "boolean"
+          },
+          "notify_on_subscribe" : {
+            "type" : "string"
+          },
+          "notify_on_unsubscribe" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "name" : "NewX listX",
+          "permission_reminder" : "YouX signed up for updates on Greeks economy.",
+          "email_type_option" : false,
+          "contact" : {
+            "company" : "DoeX LtdX.",
+            "address1" : "DoeStreet 1",
+            "address2" : "",
+            "city" : "Doesy",
+            "state" : "Doedoe",
+            "zip" : "1672-12",
+            "country" : "US",
+            "phone" : "55533344412"
+          },
+          "campaign_defaults" : {
+            "from_name" : "JohnXX Doe",
+            "from_email" : "john@doe.com",
+            "subject" : "My new campaign!",
+            "language" : "US"
+          },
+          "visibility" : "prv",
+          "use_archive_bar" : false,
+          "notify_on_subscribe" : "notify@loyaltycorp.com.au",
+          "notify_on_unsubscribe" : "notify@loyaltycorp.com.au"
+        }
+      },
+      "UpdatememberRequest" : {
+        "title" : "UpdatememberRequest",
+        "required" : [ "email_address", "ip_signup", "language", "location", "status", "tags", "vip" ],
+        "type" : "object",
+        "properties" : {
+          "email_address" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "vip" : {
+            "type" : "boolean"
+          },
+          "location" : {
+            "$ref" : "#/components/schemas/Location"
+          },
+          "ip_signup" : {
+            "type" : "string"
+          },
+          "tags" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "example" : {
+          "email_address" : "RoyaltyXCoLtdX@hotmail.com",
+          "status" : "subscribed",
+          "language" : "USX EnglishX",
+          "vip" : true,
+          "location" : {
+            "latitude" : "-37.898725",
+            "longitude" : "145.049333"
+          },
+          "ip_signup" : "172.198.34.87",
+          "tags" : [ "Soccer", "Fashion" ]
+        }
+      },
+      "Location" : {
+        "title" : "Location",
+        "required" : [ "latitude", "longitude" ],
+        "type" : "object",
+        "properties" : {
+          "latitude" : {
+            "type" : "string"
+          },
+          "longitude" : {
+            "type" : "string"
+          }
+        }
+      },
+      "body" : {
+        "required" : [ "email_address", "ip_signup", "language", "location[latitude]", "location[longitude]", "status", "tags[]", "vip" ],
+        "type" : "object",
+        "properties" : {
+          "email_address" : {
+            "type" : "string",
+            "example" : "RoyaltyCoLtd@hotmail.com"
+          },
+          "status" : {
+            "type" : "string",
+            "example" : "subscribed"
+          },
+          "language" : {
+            "type" : "string",
+            "example" : "US English"
+          },
+          "vip" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "location[latitude]" : {
+            "type" : "string",
+            "example" : "-37.898725"
+          },
+          "location[longitude]" : {
+            "type" : "string",
+            "example" : "145.049333"
+          },
+          "ip_signup" : {
+            "type" : "string",
+            "example" : "172.198.34.87"
+          },
+          "tags[]" : {
+            "type" : "string",
+            "example" : "Soccer"
+          }
+        }
+      }
+    }
+  }
+}

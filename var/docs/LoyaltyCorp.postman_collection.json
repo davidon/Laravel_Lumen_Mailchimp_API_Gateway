@@ -1,0 +1,320 @@
+{
+	"info": {
+		"_postman_id": "76ab7fbb-4acd-7df6-ec58-aa8a7fba1fbf",
+		"name": "LoyaltyCorp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Show a list by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/mailchimp/lists/3c84fa3e-e20f-11e8-b7e1-48ba4e1c8c7f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"mailchimp",
+						"lists",
+						"3c84fa3e-e20f-11e8-b7e1-48ba4e1c8c7f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show all lists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/mailchimp/lists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"mailchimp",
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a list",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8000/mailchimp/lists/8dfd92dd-e21f-11e8-b7e1-48ba4e1c8c7f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"mailchimp",
+						"lists",
+						"8dfd92dd-e21f-11e8-b7e1-48ba4e1c8c7f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a list",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"New list 201901170915pm\",\r\n  \"permission_reminder\": \"You signed up for updates on Greeks economy.\",\r\n  \"email_type_option\": false,\r\n  \"contact\": {\r\n    \"company\": \"Doe Ltd.\",\r\n    \"address1\": \"DoeStreet 1\",\r\n    \"address2\": \"\",\r\n    \"city\": \"Doesy\",\r\n    \"state\": \"Doedoe\",\r\n    \"zip\": \"1672-12\",\r\n    \"country\": \"US\",\r\n    \"phone\": \"55533344412\"\r\n  },\r\n  \"campaign_defaults\": {\r\n    \"from_name\": \"John Doe\",\r\n    \"from_email\": \"john@doe.com\",\r\n    \"subject\": \"My new campaign!\",\r\n    \"language\": \"US\"\r\n  },\r\n  \"visibility\": \"prv\",\r\n  \"use_archive_bar\": false,\r\n  \"notify_on_subscribe\": \"notify@loyaltycorp.com.au\",\r\n  \"notify_on_unsubscribe\": \"notify@loyaltycorp.com.au\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/mailchimp/lists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"mailchimp",
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a list",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"NewX listX\",\r\n  \"permission_reminder\": \"YouX signed up for updates on Greeks economy.\",\r\n  \"email_type_option\": false,\r\n  \"contact\": {\r\n    \"company\": \"DoeX LtdX.\",\r\n    \"address1\": \"DoeStreet 1\",\r\n    \"address2\": \"\",\r\n    \"city\": \"Doesy\",\r\n    \"state\": \"Doedoe\",\r\n    \"zip\": \"1672-12\",\r\n    \"country\": \"US\",\r\n    \"phone\": \"55533344412\"\r\n  },\r\n  \"campaign_defaults\": {\r\n    \"from_name\": \"JohnXX Doe\",\r\n    \"from_email\": \"john@doe.com\",\r\n    \"subject\": \"My new campaign!\",\r\n    \"language\": \"US\"\r\n  },\r\n  \"visibility\": \"prv\",\r\n  \"use_archive_bar\": false,\r\n  \"notify_on_subscribe\": \"notify@loyaltycorp.com.au\",\r\n  \"notify_on_unsubscribe\": \"notify@loyaltycorp.com.au\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/mailchimp/lists/3c84fa3e-e20f-11e8-b7e1-48ba4e1c8c7f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"mailchimp",
+						"lists",
+						"3c84fa3e-e20f-11e8-b7e1-48ba4e1c8c7f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a member",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email_address",
+							"value": "RoyaltyCoLtd201901170915pm@hotmail.com",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "subscribed",
+							"type": "text"
+						},
+						{
+							"key": "language",
+							"value": "US English",
+							"type": "text"
+						},
+						{
+							"key": "vip",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "location[latitude]",
+							"value": "-37.898725",
+							"type": "text"
+						},
+						{
+							"key": "location[longitude]",
+							"value": "145.049333",
+							"type": "text"
+						},
+						{
+							"key": "ip_signup",
+							"value": "172.198.34.87",
+							"type": "text"
+						},
+						{
+							"key": "tags[]",
+							"value": "Soccer",
+							"type": "text"
+						},
+						{
+							"key": "tags[]",
+							"value": "Fashion",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/mailchimp/lists/f05cf3eb-1a40-11e9-a677-6c2b594490c8/members",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"mailchimp",
+						"lists",
+						"f05cf3eb-1a40-11e9-a677-6c2b594490c8",
+						"members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update member",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email_address\": \"RoyaltyXCoLtdX@hotmail.com\",\r\n  \"status\": \"subscribed\",\r\n  \"language\": \"USX EnglishX\",\r\n  \"vip\": true,\r\n  \"location\": {\r\n    \"latitude\": \"-37.898725\",\r\n    \"longitude\": \"145.049333\"\r\n  },\r\n  \"ip_signup\": \"172.198.34.87\",\r\n  \"tags\": [\r\n    \"Soccer\",\r\n    \"Fashion\"\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/mailchimp/lists/4fbb3973-de94-11e8-b7e1-48ba4e1c8c7f/members/e31a7283-dfbe-11e8-b7e1-48ba4e1c8c7f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"mailchimp",
+						"lists",
+						"4fbb3973-de94-11e8-b7e1-48ba4e1c8c7f",
+						"members",
+						"e31a7283-dfbe-11e8-b7e1-48ba4e1c8c7f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show all members of a list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/mailchimp/lists/3c84fa3e-e20f-11e8-b7e1-48ba4e1c8c7f/members",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"mailchimp",
+						"lists",
+						"3c84fa3e-e20f-11e8-b7e1-48ba4e1c8c7f",
+						"members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show a specific member by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/mailchimp/lists/f8996882-e21c-11e8-b7e1-48ba4e1c8c7f/members/35981f7e-e21d-11e8-b7e1-48ba4e1c8c7f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"mailchimp",
+						"lists",
+						"f8996882-e21c-11e8-b7e1-48ba4e1c8c7f",
+						"members",
+						"35981f7e-e21d-11e8-b7e1-48ba4e1c8c7f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a member by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8000/mailchimp/lists/4fbb3973-de94-11e8-b7e1-48ba4e1c8c7f/members/e31a7283-dfbe-11e8-b7e1-48ba4e1c8c7f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"mailchimp",
+						"lists",
+						"4fbb3973-de94-11e8-b7e1-48ba4e1c8c7f",
+						"members",
+						"e31a7283-dfbe-11e8-b7e1-48ba4e1c8c7f"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
